@@ -1,1 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Kavoon&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Manrope:wght@200..800&family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Karma:wght@300;400;500;600;700&family=Kavoon&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Manrope:wght@200..800&family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
 @import 'tailwindcss';
+
+:root {
+    --bg-color: #F1EEEB;
+    --primary-btn: #A36D2F;
+    --secondary-btn: #000;
+    --gray-text: #B3ABA2;
+}
+
+body {
+    font-family: "Karma", serif;
+}

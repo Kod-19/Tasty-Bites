@@ -1,10 +1,14 @@
 import React from 'react'
+import Navbar from './components/Navbar';
 
 const App = () => {
   return (
-    <div>
-      
-    </div>
+    <>
+      <Navbar />
+      <div className='min-h-screen max-w-7xl'>
+
+      </div>
+    </>
   )
 }
 
