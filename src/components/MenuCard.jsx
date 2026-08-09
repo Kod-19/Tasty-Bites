@@ -27,7 +27,7 @@ export default function MenuCard({ item, onAddToCart }) {
       <div className="p-5 pt-0">
         <button
           onClick={() => onAddToCart(item)}
-          className="w-full bg-app-primary text-white py-2.5 px-4 rounded-lg font-medium hover:opacity-90 transition active:scale-[0.98]"
+          className="w-full bg-app-primary text-white py-2.5 px-4 rounded-lg cursor-pointer font-medium hover:opacity-90 transition active:scale-[0.98]"
         >
           Add to Cart
         </button>

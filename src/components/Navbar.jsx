@@ -36,12 +36,12 @@ export default function Navbar({ onOpenCart, cartCount = 0 }) {
 
         {/* Right Controls (Theme Toggle, Cart, Hamburger Toggle) */}
         <div className="flex items-center gap-2 sm:gap-3">
-          <ThemeToggle />
+          <ThemeToggle className='cursor-pointer' />
 
           {/* Cart Button */}
           <button
             onClick={onOpenCart}
-            className="bg-app-primary text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold shadow hover:opacity-90 transition flex flex-row items-center gap-1.5 sm:gap-2 active:scale-[0.98] shrink-0"
+            className="cursor-pointer flex flex-row items-center gap-1.5 sm:gap-2 active:scale-[0.98] shrink-0"
           >
             <span className="flex items-center gap-1 whitespace-nowrap">
                 <ShoppingBag size={18} />

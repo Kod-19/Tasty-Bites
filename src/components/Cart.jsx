@@ -41,10 +41,10 @@ export default function Cart({
           <h2 className="text-2xl font-extrabold tracking-wide text-app-primary">Your Cart</h2>
           <button
             onClick={onClose}
-            className="p-2 rounded-lg bg-app-bg-subtle text-app-text hover:opacity-80 transition"
+            className="cursor-pointer"
             aria-label="Close Cart"
           >
-            ✕
+            <X />
           </button>
         </div>
 
@@ -72,7 +72,7 @@ export default function Cart({
                     {/* Delete Item Button */}
                     <button
                       onClick={() => onRemoveFromCart(item.id)}
-                      className="text-app-muted hover:text-red-500 transition p-1 text-sm shrink-0"
+                      className="text-app-muted hover:text-red-500 transition p-1 text-sm shrink-0 cursor-pointer"
                       title="Remove item"
                       aria-label="Remove item"
                     >
@@ -89,7 +89,7 @@ export default function Cart({
                     <div className="flex items-center gap-2 bg-app-card px-2 py-0.5 rounded-md border border-app-border">
                       <button
                         onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
-                        className="text-app-muted hover:text-app-text font-bold px-1"
+                        className="text-app-muted hover:text-app-text font-bold px-1 cursor-pointer"
                         aria-label="Decrease quantity"
                       >
                         -
@@ -99,7 +99,7 @@ export default function Cart({
                       </span>
                       <button
                         onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
-                        className="text-app-muted hover:text-app-text font-bold px-1"
+                        className="text-app-muted hover:text-app-text font-bold px-1 cursor-pointer"
                         aria-label="Increase quantity"
                       >
                         +

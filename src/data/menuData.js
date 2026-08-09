@@ -17,7 +17,7 @@ export const menuItems = [
   },
   {
     id: 3,
-    name: 'Yam and Plaintain',
+    name: 'Yam and Plantain',
     price: '$13.99',
     desc: 'Whole spiced tilapia grilled over open flame, served with fresh pepper sauce and banku.',
     query: 'yam and plaintain',
