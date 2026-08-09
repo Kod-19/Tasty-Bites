@@ -4,15 +4,48 @@
 
 @import 'tailwindcss';
 
-:root {
-    --bg-color: #F1EEEB;
-    --primary-btn: #A36D2F;
-    --secondary-btn: #000;
-    --gray-text: #B3ABA2;
+@layer base {
+  :root {
+    /* Light Mode Palette: Warm Brown & Crisp Black */
+    --color-bg-primary: #FAF6F0;
+    --color-bg-secondary: #F3ECE1;
+    --color-bg-card: #FFFFFF;
+    --color-text-main: #121212;
+    --color-text-muted: #5A4E47;
+    --color-brand-primary: #8B4513;   /* Saddle Brown */
+    --color-brand-accent: #3E2723;    /* Dark Espresso */
+    --color-border: #E5D5C5;
+  }
+
+  .dark {
+    /* Dark Mode Palette: Deep Espresso Charcoal & Amber Glow */
+    --color-bg-primary: #12100E;
+    --color-bg-secondary: #1C1815;
+    --color-bg-card: #25201C;
+    --color-text-main: #F5EBE6;
+    --color-text-muted: #B8A89E;
+    --color-brand-primary: #D97706;   /* Rich Warm Amber */
+    --color-brand-accent: #F59E0B;    /* Bright Gold Glow */
+    --color-border: #38302B;
+  }
+}
+
+/* Modern Tailwind v4 Theme Utility Mapping */
+@theme {
+  --color-app-bg: var(--color-bg-primary);
+  --color-app-bg-subtle: var(--color-bg-secondary);
+  --color-app-card: var(--color-bg-card);
+  --color-app-text: var(--color-text-main);
+  --color-app-muted: var(--color-text-muted);
+  --color-app-primary: var(--color-brand-primary);
+  --color-app-accent: var(--color-brand-accent);
+  --color-app-border: var(--color-border);
 }
 
 body {
     font-family: "Karma", serif;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-main);
 }
 
 .font-kavoon {
