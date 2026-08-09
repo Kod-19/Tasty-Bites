@@ -1,10 +1,6 @@
 import React from 'react'
 
 const MenuSection = () => {
-    const MenuItems = [
-        {name: 'Jollof'}
-    ]
-
   return (
     <div
         id='#menu' 
