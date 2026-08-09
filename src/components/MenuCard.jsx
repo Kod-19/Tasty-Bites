@@ -1,12 +1,11 @@
 import React from 'react';
 
-export default function MenuCard({ item }) {
+export default function MenuCard({ item, onAddToCart }) {
   const { name, price, desc, image } = item;
 
   return (
     <div className="bg-app-card rounded-xl border border-app-border overflow-hidden shadow-xs flex flex-col justify-between h-full transition hover:shadow-md">
       <div>
-        {/* Item Image Header */}
         <div className="relative w-full h-48 bg-app-bg-subtle overflow-hidden">
           <img
             src={image}
@@ -16,7 +15,6 @@ export default function MenuCard({ item }) {
           />
         </div>
 
-        {/* Card Body Content */}
         <div className="p-5">
           <div className="flex justify-between items-start gap-2 mb-2">
             <h3 className="text-xl font-bold text-app-text leading-snug">{name}</h3>
@@ -26,9 +24,11 @@ export default function MenuCard({ item }) {
         </div>
       </div>
 
-      {/* Action Footer Button */}
       <div className="p-5 pt-0">
-        <button className="w-full bg-app-primary text-white py-2.5 px-4 rounded-lg font-medium hover:opacity-90 transition active:scale-[0.98]">
+        <button
+          onClick={() => onAddToCart(item)}
+          className="w-full bg-app-primary text-white py-2.5 px-4 rounded-lg font-medium hover:opacity-90 transition active:scale-[0.98]"
+        >
           Add to Cart
         </button>
       </div>
