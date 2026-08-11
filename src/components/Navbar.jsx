@@ -17,8 +17,8 @@ export default function Navbar({ onOpenCart, cartCount = 0 }) {
       <div className="max-w-6xl mx-auto flex justify-between items-center">
         
         {/* Brand Logo */}
-        <a href="#" className="text-lg sm:text-xl font-kavoon tracking-wide text-app-primary shrink-0">
-          TastyBites
+        <a href="#" className="text-lg sm:text-xl font-kavoon tracking-wide shrink-0 font-black text-app-text">
+          Tasty<span className="text-app-primary">Bites</span>.
         </a>
 
         {/* Desktop Navigation Links */}

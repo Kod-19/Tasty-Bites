@@ -1,6 +1,6 @@
 import React from 'react';
 import { menuItems } from '../data/menuData';
-import { X } from 'lucide-react';
+import { TrashIcon, X } from 'lucide-react';
 
 export default function Cart({
   isOpen,
@@ -76,13 +76,13 @@ export default function Cart({
                       title="Remove item"
                       aria-label="Remove item"
                     >
-                      <X size={16} />
+                      <TrashIcon size={16} />
                     </button>
                   </div>
                   
                   <div className="flex items-center justify-between mt-2">
                     <span className="text-app-primary font-bold text-sm">
-                      {typeof item.price === 'number' ? `$${item.price.toFixed(2)}` : item.price}
+                      {typeof item.price === 'number' ? `£${item.price.toFixed(2)}` : item.price}
                     </span>
 
                     {/* Quantity Controls */}
@@ -116,12 +116,12 @@ export default function Cart({
         <div className="pt-4 border-t border-app-border space-y-4">
           <div className="flex justify-between items-center text-lg font-bold">
             <span>Total:</span>
-            <span className="text-app-primary">${totalAmount.toFixed(2)}</span>
+            <span className="text-app-primary">£{totalAmount.toFixed(2)}</span>
           </div>
 
           <button
             disabled={syncedCartItems.length === 0}
-            className="w-full bg-app-primary text-white py-3 rounded-lg font-bold hover:opacity-90 transition disabled:opacity-50 active:scale-[0.99]"
+            className="w-full bg-app-primary text-white py-3 rounded-lg font-bold hover:opacity-90 transition disabled:opacity-50 active:scale-[0.99] cursor-pointer"
           >
             Proceed to Checkout
           </button>
