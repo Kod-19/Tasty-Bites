@@ -9,7 +9,7 @@ export default function Navbar({ onOpenCart, cartCount = 0 }) {
   const location = useLocation();
 
   const navLinks = [
-    { name: 'Home', path: '/#' },
+    { name: 'Home', path: '/#home' },
     { name: 'Menu', path: '/#menu' },
     { name: 'Contact', path: '/#contact' },
     { name: 'Booking', path: '/booking' },
