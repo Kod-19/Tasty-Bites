@@ -41,7 +41,8 @@ export default function ContactSection() {
             Get in Touch
           </h2>
           <p className="mt-2 text-app-muted text-base max-w-xl mx-auto">
-            Have questions about our catering, menu, or want to reserve a table? Send us a message or reach out directly!
+            Have questions about your delivery order, catering services, or dietary requests? 
+            Drop us a message below or reach out directly—we're here to help bring fresh, authentic meals straight to your door.
           </p>
         </div>
 
