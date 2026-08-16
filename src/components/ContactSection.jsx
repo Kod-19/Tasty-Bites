@@ -56,7 +56,7 @@ export default function ContactSection() {
               {/* Info Items */}
               <div className="space-y-6 text-app-muted">
                 <div className="flex items-start gap-4">
-                  <div className="p-3 bg-app-bg-subtle border border-app-border rounded-xl shrink-0 text-app-primary">
+                  <div className="shrink-0 text-app-primary">
                     <MapPin className="w-6 h-6" />
                   </div>
                   <div>
@@ -68,7 +68,7 @@ export default function ContactSection() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="p-3 bg-app-bg-subtle border border-app-border rounded-xl shrink-0 text-app-primary">
+                  <div className="shrink-0 text-app-primary">
                     <Phone className="w-6 h-6" />
                   </div>
                   <div>
@@ -79,7 +79,7 @@ export default function ContactSection() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="p-3 bg-app-bg-subtle border border-app-border rounded-xl shrink-0 text-app-primary">
+                  <div className="shrink-0 text-app-primary">
                     <Mail className="w-6 h-6" />
                   </div>
                   <div>
@@ -90,7 +90,7 @@ export default function ContactSection() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="p-3 bg-app-bg-subtle border border-app-border rounded-xl shrink-0 text-app-primary">
+                  <div className="shrink-0 text-app-primary">
                     <Clock className="w-6 h-6" />
                   </div>
                   <div>
@@ -111,7 +111,7 @@ export default function ContactSection() {
                   href="https://instagram.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-3 bg-app-bg-subtle border border-app-border rounded-full text-app-muted hover:text-app-primary hover:border-app-primary transition-colors"
+                  className="text-app-muted hover:text-app-primary hover:border-app-primary transition-colors"
                   aria-label="Instagram"
                 >
                   <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -124,7 +124,7 @@ export default function ContactSection() {
                   href="https://facebook.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-3 bg-app-bg-subtle border border-app-border rounded-full text-app-muted hover:text-app-primary hover:border-app-primary transition-colors"
+                  className="text-app-muted hover:text-app-primary hover:border-app-primary transition-colors"
                   aria-label="Facebook"
                 >
                   <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -137,7 +137,7 @@ export default function ContactSection() {
                   href="https://x.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-3 bg-app-bg-subtle border border-app-border rounded-full text-app-muted hover:text-app-primary hover:border-app-primary transition-colors"
+                  className="text-app-muted hover:text-app-primary hover:border-app-primary transition-colors"
                   aria-label="X"
                 >
                   <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -148,7 +148,7 @@ export default function ContactSection() {
                 {/* Website */}
                 <a
                   href="#"
-                  className="p-3 bg-app-bg-subtle border border-app-border rounded-full text-app-muted hover:text-app-primary hover:border-app-primary transition-colors"
+                  className="text-app-muted hover:text-app-primary hover:border-app-primary transition-colors"
                   aria-label="Website"
                 >
                   <Globe className="w-5 h-5" />
@@ -229,9 +229,9 @@ export default function ContactSection() {
                   className="w-full bg-app-bg-subtle border border-app-border rounded-xl px-4 py-3 text-app-text text-sm focus:outline-none focus:ring-2 focus:ring-app-primary/50 transition"
                 >
                   <option value="General Inquiry">General Inquiry</option>
-                  <option value="Table Reservation">Table Reservation</option>
-                  <option value="Catering Service">Catering & Events</option>
+                  <option value="Complaint">Complaint</option>
                   <option value="Feedback">Feedback / Suggestions</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
 

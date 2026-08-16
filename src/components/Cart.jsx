@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { menuItems } from '../data/menuData';
 import { TrashIcon, X } from 'lucide-react';
 
@@ -9,6 +10,8 @@ export default function Cart({
   onRemoveFromCart,
   onUpdateQuantity
 }) {
+  const navigate = useNavigate();
+
   if (!isOpen) return null;
 
   // Cross-reference cart items with authoritative dish details in menuData.js
@@ -32,6 +35,11 @@ export default function Cart({
     return acc + numericPrice * (item.quantity || 1);
   }, 0);
 
+  const handleProceedToCheckout = () => {
+    onClose();
+    navigate('/booking');
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex justify-end bg-black/50 backdrop-blur-xs transition-opacity">
       <div className="bg-app-card text-app-text border-l border-app-border w-full max-w-md h-full flex flex-col justify-between shadow-2xl p-6">
@@ -41,7 +49,7 @@ export default function Cart({
           <h2 className="text-2xl font-extrabold tracking-wide text-app-primary">Your Cart</h2>
           <button
             onClick={onClose}
-            className="cursor-pointer"
+            className="cursor-pointer hover:text-app-primary transition"
             aria-label="Close Cart"
           >
             <X />
@@ -69,7 +77,6 @@ export default function Cart({
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-start gap-1">
                     <h4 className="font-bold text-base text-app-text truncate">{item.name}</h4>
-                    {/* Delete Item Button */}
                     <button
                       onClick={() => onRemoveFromCart(item.id)}
                       className="text-app-muted hover:text-red-500 transition p-1 text-sm shrink-0 cursor-pointer"
@@ -121,6 +128,7 @@ export default function Cart({
 
           <button
             disabled={syncedCartItems.length === 0}
+            onClick={handleProceedToCheckout}
             className="w-full bg-app-primary text-white py-3 rounded-lg font-bold hover:opacity-90 transition disabled:opacity-50 active:scale-[0.99] cursor-pointer"
           >
             Proceed to Checkout

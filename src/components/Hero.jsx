@@ -1,4 +1,5 @@
 import React from 'react'
+import hero from '../assets/images/hero.jpg';
 
 const Hero = () => {
   return (
@@ -18,16 +19,16 @@ const Hero = () => {
 
         <div className='mt-6 flex flex-wrap justify-center md:justify-start gap-4'>
           <a 
-            href="#menu" 
+            href="#booking" 
             className='bg-app-primary text-white px-6 py-3 rounded-lg font-medium hover:opacity-90 transition cursor-pointer shadow-sm active:scale-[0.98]'
           >
             Order Now
           </a>
           <a 
-            href="#contact" 
+            href="#menu" 
             className='bg-app-bg-subtle text-app-text border border-app-border px-6 py-3 rounded-lg font-medium hover:bg-app-card transition cursor-pointer active:scale-[0.98]'
           >
-            Our Story
+            Menu
           </a>
         </div>
       </div>
@@ -35,7 +36,7 @@ const Hero = () => {
       <div className='flex-1 flex justify-center w-full'>
         <div className='w-full max-w-md h-72 md:h-96 bg-app-bg-subtle border border-app-border rounded-2xl flex items-center justify-center text-app-primary font-bold shadow-md overflow-hidden relative group'>
           <img 
-            src="https://images.unsplash.com/photo-1665332195309-9d75071138f0?q=80&w=1470&auto=format&fit=crop" 
+            src={hero} 
             alt="Authentic African Food Spread" 
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
