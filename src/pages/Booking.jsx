@@ -10,6 +10,7 @@ export default function Booking({ cartItems = [], onUpdateQuantity, onRemoveFrom
     return {
       ...cartItem,
       name: cartItem.name || dishData.name || 'Unknown Item',
+      desc: cartItem.desc || dishData.desc || '',
       image: cartItem.image || dishData.image || 'https://via.placeholder.com/150',
       price: cartItem.price || dishData.price || '£0.00',
     };
@@ -17,17 +18,57 @@ export default function Booking({ cartItems = [], onUpdateQuantity, onRemoveFrom
 
   const [itemCustomizations, setItemCustomizations] = useState({});
 
+  // Helper function to set initial customization defaults based on dish type
+  const getDefaultCustomizations = (dish) => {
+    const name = (dish.name || '').toLowerCase();
+    
+    if (name.includes('fufu')) {
+      return {
+        soupType: 'Light Soup',
+        proteinType: 'Goat Meat',
+        spiceLevel: 'Medium',
+      };
+    }
+    if (name.includes('waakye')) {
+      return {
+        proteinType: 'Assorted Meat',
+        sideOption: 'Shito & Boiled Egg',
+        spiceLevel: 'Medium',
+      };
+    }
+    if (name.includes('yam')) {
+      return {
+        stewType: 'Savory Tomato Stew',
+        prepType: 'Boiled White Yam',
+        spiceLevel: 'Medium',
+      };
+    }
+    if (name.includes('jollof')) {
+      return {
+        proteinType: 'Slow-Roasted Chicken',
+        spiceLevel: 'Medium',
+      };
+    }
+    if (name.includes('fried rice')) {
+      return {
+        proteinType: 'Grilled Chicken',
+        spiceLevel: 'Medium',
+      };
+    }
+    
+    return {
+      proteinType: 'Chicken',
+      spiceLevel: 'Medium',
+    };
+  };
+
   // Sync customization state whenever cart items change
   useEffect(() => {
     setItemCustomizations((prev) => {
       const updated = { ...prev };
       syncedCartItems.forEach((item) => {
         if (!updated[item.id]) {
-          updated[item.id] = {
-            soupType: item.customizations?.soupType || 'Light Soup',
-            proteinType: item.customizations?.proteinType || 'Goat Meat',
-            spiceLevel: item.customizations?.spiceLevel || 'Medium',
-          };
+          updated[item.id] = item.customizations || getDefaultCustomizations(item);
         }
       });
       return updated;
@@ -51,7 +92,7 @@ export default function Booking({ cartItems = [], onUpdateQuantity, onRemoveFrom
     setItemCustomizations((prev) => ({
       ...prev,
       [itemId]: {
-        ...(prev[itemId] || { soupType: 'Light Soup', proteinType: 'Goat Meat', spiceLevel: 'Medium' }),
+        ...(prev[itemId] || {}),
         [field]: value,
       },
     }));
@@ -122,7 +163,7 @@ export default function Booking({ cartItems = [], onUpdateQuantity, onRemoveFrom
           <div>
             <h1 className="text-3xl font-extrabold text-app-primary">Dish Preferences & Booking</h1>
             <p className="text-app-muted text-sm mt-1">
-              Customize soup and protein choices for your cart items before completing checkout.
+              Customize preferences for your selected cart items before completing checkout.
             </p>
           </div>
           <Link
@@ -161,11 +202,14 @@ export default function Booking({ cartItems = [], onUpdateQuantity, onRemoveFrom
 
               <div className="space-y-6">
                 {syncedCartItems.map((item) => {
-                  const custom = itemCustomizations[item.id] || {
-                    soupType: 'Light Soup',
-                    proteinType: 'Goat Meat',
-                    spiceLevel: 'Medium',
-                  };
+                  const name = (item.name || '').toLowerCase();
+                  const custom = itemCustomizations[item.id] || getDefaultCustomizations(item);
+
+                  const isFufu = name.includes('fufu');
+                  const isWaakye = name.includes('waakye');
+                  const isYam = name.includes('yam');
+                  const isJollof = name.includes('jollof');
+                  const isFriedRice = name.includes('fried rice');
 
                   return (
                     <div
@@ -187,7 +231,7 @@ export default function Booking({ cartItems = [], onUpdateQuantity, onRemoveFrom
                           </div>
                         </div>
 
-                        {/* Quantity & Delete Controls synced with Cart */}
+                        {/* Quantity & Delete Controls */}
                         <div className="flex items-center gap-3">
                           <div className="flex items-center gap-2 bg-app-card px-2 py-1 rounded-md border border-app-border">
                             <button
@@ -222,46 +266,154 @@ export default function Booking({ cartItems = [], onUpdateQuantity, onRemoveFrom
                         </div>
                       </div>
 
-                      {/* Dropdowns to customize the dish */}
+                      {/* Dynamic Dropdowns based on dish description */}
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-app-border/60">
-                        <div>
-                          <label className="block text-[11px] font-bold uppercase text-app-muted mb-1">
-                            Soup / Sauce Preference
-                          </label>
-                          <select
-                            value={custom.soupType}
-                            onChange={(e) => handleCustomChange(item.id, 'soupType', e.target.value)}
-                            className="w-full bg-app-card border border-app-border rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-app-primary"
-                          >
-                            <option value="Light Soup">Goat / Light Soup</option>
-                            <option value="Groundnut Soup">Groundnut (Peanut) Soup</option>
-                            <option value="Palm Nut Soup">Palm Nut Soup</option>
-                            <option value="Spinach Stew">Contomire / Spinach Stew</option>
-                          </select>
-                        </div>
+                        
+                        {/* Fufu: Includes Soup Dropdown */}
+                        {isFufu && (
+                          <>
+                            <div>
+                              <label className="block text-[11px] font-bold uppercase text-app-muted mb-1">
+                                Soup Preference
+                              </label>
+                              <select
+                                value={custom.soupType || 'Light Soup'}
+                                onChange={(e) => handleCustomChange(item.id, 'soupType', e.target.value)}
+                                className="w-full bg-app-card border border-app-border rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-app-primary"
+                              >
+                                <option value="Light Soup">Light Soup</option>
+                                <option value="Groundnut Soup">Groundnut (Peanut) Soup</option>
+                                <option value="Palm Nut Soup">Palm Nut Soup</option>
+                              </select>
+                            </div>
 
-                        <div>
-                          <label className="block text-[11px] font-bold uppercase text-app-muted mb-1">
-                            Protein Preference
-                          </label>
-                          <select
-                            value={custom.proteinType}
-                            onChange={(e) => handleCustomChange(item.id, 'proteinType', e.target.value)}
-                            className="w-full bg-app-card border border-app-border rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-app-primary"
-                          >
-                            <option value="Goat Meat">Goat Meat</option>
-                            <option value="Assorted Beef">Assorted Beef</option>
-                            <option value="Tilapia / Fish">Tilapia / Fresh Fish</option>
-                            <option value="Chicken">Chicken</option>
-                          </select>
-                        </div>
+                            <div>
+                              <label className="block text-[11px] font-bold uppercase text-app-muted mb-1">
+                                Protein Choice
+                              </label>
+                              <select
+                                value={custom.proteinType || 'Goat Meat'}
+                                onChange={(e) => handleCustomChange(item.id, 'proteinType', e.target.value)}
+                                className="w-full bg-app-card border border-app-border rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-app-primary"
+                              >
+                                <option value="Goat Meat">Tender Goat Meat</option>
+                                <option value="Assorted Beef">Assorted Beef</option>
+                                <option value="Fresh Fish">Fresh Fish / Tilapia</option>
+                              </select>
+                            </div>
+                          </>
+                        )}
 
+                        {/* Waakye Customizations */}
+                        {isWaakye && (
+                          <>
+                            <div>
+                              <label className="block text-[11px] font-bold uppercase text-app-muted mb-1">
+                                Protein Choice
+                              </label>
+                              <select
+                                value={custom.proteinType || 'Assorted Meat'}
+                                onChange={(e) => handleCustomChange(item.id, 'proteinType', e.target.value)}
+                                className="w-full bg-app-card border border-app-border rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-app-primary"
+                              >
+                                <option value="Assorted Meat">Assorted Meats</option>
+                                <option value="Wele & Beef">Wele & Beef</option>
+                                <option value="Fried Fish">Fried Fish</option>
+                              </select>
+                            </div>
+
+                            <div>
+                              <label className="block text-[11px] font-bold uppercase text-app-muted mb-1">
+                                Sides & Add-ons
+                              </label>
+                              <select
+                                value={custom.sideOption || 'Shito & Boiled Egg'}
+                                onChange={(e) => handleCustomChange(item.id, 'sideOption', e.target.value)}
+                                className="w-full bg-app-card border border-app-border rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-app-primary"
+                              >
+                                <option value="Shito & Boiled Egg">Spicy Shito + Boiled Egg</option>
+                                <option value="Shito Extra">Extra Black Shito</option>
+                                <option value="Plain Gari">Gari & Spaghetti Add-on</option>
+                              </select>
+                            </div>
+                          </>
+                        )}
+
+                        {/* Yam and Plantain Customizations */}
+                        {isYam && (
+                          <>
+                            <div>
+                              <label className="block text-[11px] font-bold uppercase text-app-muted mb-1">
+                                Yam Preparation
+                              </label>
+                              <select
+                                value={custom.prepType || 'Boiled White Yam'}
+                                onChange={(e) => handleCustomChange(item.id, 'prepType', e.target.value)}
+                                className="w-full bg-app-card border border-app-border rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-app-primary"
+                              >
+                                <option value="Boiled White Yam">Boiled White Yam</option>
+                                <option value="Fried Yam">Golden Fried Yam</option>
+                              </select>
+                            </div>
+
+                            <div>
+                              <label className="block text-[11px] font-bold uppercase text-app-muted mb-1">
+                                Sauce / Stew Choice
+                              </label>
+                              <select
+                                value={custom.stewType || 'Savory Tomato Stew'}
+                                onChange={(e) => handleCustomChange(item.id, 'stewType', e.target.value)}
+                                className="w-full bg-app-card border border-app-border rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-app-primary"
+                              >
+                                <option value="Savory Tomato Stew">Savory Spicy Tomato Stew</option>
+                                <option value="Palava Sauce">Palava Sauce (Contomire)</option>
+                              </select>
+                            </div>
+                          </>
+                        )}
+
+                        {/* Jollof Rice Customizations */}
+                        {isJollof && (
+                          <div>
+                            <label className="block text-[11px] font-bold uppercase text-app-muted mb-1">
+                              Protein Choice
+                            </label>
+                            <select
+                              value={custom.proteinType || 'Slow-Roasted Chicken'}
+                              onChange={(e) => handleCustomChange(item.id, 'proteinType', e.target.value)}
+                              className="w-full bg-app-card border border-app-border rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-app-primary"
+                            >
+                              <option value="Slow-Roasted Chicken">Slow-Roasted Chicken</option>
+                              <option value="Grilled Beef">Grilled Beef</option>
+                              <option value="Fried Fish">Fried Fish</option>
+                            </select>
+                          </div>
+                        )}
+
+                        {/* Fried Rice Customizations */}
+                        {isFriedRice && (
+                          <div>
+                            <label className="block text-[11px] font-bold uppercase text-app-muted mb-1">
+                              Protein Choice
+                            </label>
+                            <select
+                              value={custom.proteinType || 'Grilled Chicken'}
+                              onChange={(e) => handleCustomChange(item.id, 'proteinType', e.target.value)}
+                              className="w-full bg-app-card border border-app-border rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-app-primary"
+                            >
+                              <option value="Grilled Chicken">Grilled Chicken</option>
+                              <option value="Seasoned Beef">Seasoned Beef</option>
+                            </select>
+                          </div>
+                        )}
+
+                        {/* Universal Spice Level Dropdown */}
                         <div>
                           <label className="block text-[11px] font-bold uppercase text-app-muted mb-1">
                             Spice Level
                           </label>
                           <select
-                            value={custom.spiceLevel}
+                            value={custom.spiceLevel || 'Medium'}
                             onChange={(e) => handleCustomChange(item.id, 'spiceLevel', e.target.value)}
                             className="w-full bg-app-card border border-app-border rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-app-primary"
                           >
@@ -270,6 +422,7 @@ export default function Booking({ cartItems = [], onUpdateQuantity, onRemoveFrom
                             <option value="Extra Hot">Extra Hot</option>
                           </select>
                         </div>
+
                       </div>
                     </div>
                   );
