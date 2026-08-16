@@ -295,7 +295,7 @@ export default function Booking({ cartItems = [], onUpdateQuantity, onRemoveFrom
                     required
                     value={userInfo.fullName}
                     onChange={handleUserChange}
-                    placeholder="e.g. Kwame Dawson"
+                    placeholder="e.g. Full Name"
                     className="w-full bg-app-bg-subtle border border-app-border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-app-primary"
                   />
                 </div>

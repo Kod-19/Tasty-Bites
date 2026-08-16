@@ -62,7 +62,7 @@ export default function ContactSection() {
                   <div>
                     <h4 className="font-semibold text-app-text text-sm">Location</h4>
                     <p className="text-sm mt-0.5 leading-relaxed">
-                      124 Osu Badu Street, Airport Residential Area, Accra, Ghana
+                      Reading, UK
                     </p>
                   </div>
                 </div>
@@ -73,8 +73,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-app-text text-sm">Phone</h4>
-                    <p className="text-sm mt-0.5">+233 (0) 24 123 4567</p>
-                    <p className="text-sm">+233 (0) 50 765 4321</p>
+                    <a href='tel:+44 7300 487808'>+44 7300 487808</a>
                   </div>
                 </div>
 
@@ -84,8 +83,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-app-text text-sm">Email</h4>
-                    <p className="text-sm mt-0.5">hello@tastybites.com</p>
-                    <p className="text-sm">catering@tastybites.com</p>
+                    <a href='mailto:dawsonthelma9@gmail.com'>dawsonthelma9@gmail.com</a>
                   </div>
                 </div>
 
@@ -180,7 +178,7 @@ export default function ContactSection() {
                     required
                     value={formData.fullName}
                     onChange={handleChange}
-                    placeholder="Kofi Mensah"
+                    placeholder="Full Name"
                     className="w-full bg-app-bg-subtle border border-app-border rounded-xl px-4 py-3 text-app-text placeholder:text-app-muted/60 text-sm focus:outline-none focus:ring-2 focus:ring-app-primary/50 transition"
                   />
                 </div>
@@ -195,7 +193,7 @@ export default function ContactSection() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="+233 24 000 0000"
+                    placeholder="+44 7123 456789"
                     className="w-full bg-app-bg-subtle border border-app-border rounded-xl px-4 py-3 text-app-text placeholder:text-app-muted/60 text-sm focus:outline-none focus:ring-2 focus:ring-app-primary/50 transition"
                   />
                 </div>
@@ -212,7 +210,7 @@ export default function ContactSection() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="kofi@example.com"
+                  placeholder="email@example.com"
                   className="w-full bg-app-bg-subtle border border-app-border rounded-xl px-4 py-3 text-app-text placeholder:text-app-muted/60 text-sm focus:outline-none focus:ring-2 focus:ring-app-primary/50 transition"
                 />
               </div>
